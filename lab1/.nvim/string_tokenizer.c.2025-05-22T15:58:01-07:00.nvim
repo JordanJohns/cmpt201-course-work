@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Node {
+  char *data;
+  struct Node *next;
+};
+
+void print_list(struct Node head) {
+  printf("%s", head.data);
+  if (head.next != NULL) {
+    print_list(*head.next);
+  }
+}
+
+int main() {
+  char *example = "Tomorrow is friday.";
+  char *delim = " ";
+
+  struct Node head;
+  char *token = strtok(example, delim);
+  head.data = token;
+  head.next = NULL;
+
+  print_list(head);
+
+  return 0;
+}

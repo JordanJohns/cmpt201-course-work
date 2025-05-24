@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+  char *example = "Tomorrow is friday.";
+  char *delim = " ";
+
+  char* output = strtok(example, delim);
+
+  printf("%s", output);
+
+
+
+
+  return 0;
+}

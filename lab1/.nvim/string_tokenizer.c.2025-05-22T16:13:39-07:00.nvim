@@ -1,0 +1,24 @@
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+  char *input;
+  size_t buffer_size = 32;
+  size_t characters;
+
+  input = (char *)malloc(buffer_size * sizeof(char));
+
+  characters = getline(&input, &buffer_size, stdin);
+  printf("input: %s", input);
+
+  char *delim = " ";
+  char *saveptr = (char *)malloc(buffer_size * sizeof(char));
+
+  char *output = strtok_r(input, delim, &saveptr);
+  printf("output: %s", output);
+
+  free(input);
+  return 0;
+}

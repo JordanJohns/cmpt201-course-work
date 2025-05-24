@@ -1,0 +1,30 @@
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+  char *input;
+  size_t buffer_size = 32;
+  size_t characters;
+
+  input = (char *)malloc(buffer_size * sizeof(char));
+
+  printf("Please enter some text: ");
+  characters = getline(&input, &buffer_size, stdin);
+
+  char *delim = " ";
+  char **saveptr = (char **)malloc(buffer_size * sizeof(char *));
+
+  char *token = strtok_r(input, delim, saveptr);
+
+  printf("Tokens:");
+  while (token != NULL) {
+    printf("\t%s\n", token);
+    token = strtok_r(NULL, delim, saveptr);
+  }
+
+  free(saveptr);
+  free(input);
+  return 0;
+}

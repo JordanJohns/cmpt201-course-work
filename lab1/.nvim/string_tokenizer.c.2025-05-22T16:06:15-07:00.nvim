@@ -1,0 +1,17 @@
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main() {
+  char *buffer;
+  size_t buffsize = 32;
+  size_t characters;
+
+  buffer = (char*) malloc(buffsize * sizeof(char));
+
+  characters = getline(&buffer, &buffsize, stdin);
+  printf("%s", buffer);
+
+  return 0;
+}

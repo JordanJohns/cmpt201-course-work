@@ -1,0 +1,14 @@
+#include <string.h>
+#include <stdio.h>
+
+int main() {
+  char* example = "Tomorrow is friday.";
+  char delim = ' ';
+  
+  while (1 == 1) {
+    break;
+  }
+
+
+  return 0;
+}

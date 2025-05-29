@@ -1,0 +1,27 @@
+#define _POSIX_C_SOURCE 200809L
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+int main() {
+  char *input;
+  size_t buffer_size = 32;
+  size_t characters;
+
+  input = (char *)malloc(buffer_size * sizeof(char));
+
+  while (1) {
+    write(STDOUT_FILENO, "\nEnter a program to run:\n", 24);
+    characters = getline(&input, &buffer_size, stdin);
+    input[strlen(input) - 1] = '\0';
+
+    pid_t child = fork();
+    if (child == 0) {
+      execl(input, "");
+      exit(0);
+    }
+    waitpid(child, NULL, 0);
+  }
+}

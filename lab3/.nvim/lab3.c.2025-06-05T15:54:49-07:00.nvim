@@ -1,0 +1,38 @@
+#define _POSIX_C_SOURCE 200809L
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+int main() {
+  char *input;
+  size_t buffer_size = 32;
+  size_t characters;
+
+  input = (char *)malloc(buffer_size * sizeof(char));
+
+  
+  int i = 0;
+
+  while (1) {
+    printf("Enter input:");
+    characters = getline(&input, &buffer_size, stdin);
+  
+        
+  }
+
+
+  char **saveptr = (char **)malloc(buffer_size * sizeof(char *));
+
+  char *token = strtok_r(input, delim, saveptr);
+
+  printf("Tokens:");
+  while (token != NULL) {
+    printf("\t%s\n", token);
+    token = strtok_r(NULL, delim, saveptr);
+  }
+
+  free(saveptr);
+  free(input);
+  return 0;
+}

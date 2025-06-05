@@ -1,0 +1,13 @@
+// read user input line by line
+    // each line can include spaces and other characters
+// Store the last 5 lines of user inputs
+// when the user enters "print" it will print the last 5 lines to the screen
+    // print is the most recent input, so it will be shown
+#include <stdio.h>
+
+
+int main() {
+  
+
+  return 0;
+}

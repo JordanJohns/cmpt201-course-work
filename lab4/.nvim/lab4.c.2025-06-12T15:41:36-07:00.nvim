@@ -1,0 +1,9 @@
+
+struct header {
+  uint64_t size;
+  struct header* next;
+};
+
+int main() {
+  return 0;
+}

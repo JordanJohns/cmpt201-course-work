@@ -1,0 +1,48 @@
+#define _GNU_SOURCE
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+
+struct header {
+  uint64_t size;
+  struct header *next;
+};
+
+int main() {
+  void *heap = sbrk(256);
+
+  struct header b1 = *(struct header *)heap;
+  b1.size = 128;
+  b1.next = NULL;
+
+  struct header b2 = *(struct header *)heap;
+  b2.size = 128;
+  b2.next = &b1;
+
+  uint8_t *data1 = (&b1 + 1);
+  uint8_t *data2 = (&b2 + 1);
+
+  memset(data1, 0, 128);
+  memset(data2, 1, 128);
+
+  printf("first block:        %p\n", &b1);
+  printf("second block:       %p\n", &b2);
+  printf("first block size:   %d\n", b1.size);
+  printf("first block next:   %p\n", b1.next);
+  printf("second block size:  %d\n", b2.size);
+  printf("second block next:  %p\n", b2.next);
+
+  printf("first block data:\n");
+  for (size_t i = 0; i < 128; ++i) {
+    printf("%d\n", &b1 + i);
+  }
+
+  printf("second block data:\n");
+  for (size_t i = 0; i < 128; ++i) {
+    printf("%d\n", &b2 + i);
+  }
+
+  return 0;
+}

@@ -1,0 +1,16 @@
+#define _POSIX_C_SOURCE 200809L
+#include <stdint.h>
+#include <unistd.h>
+
+struct header {
+  uint64_t size;
+  struct header *next;
+};
+
+int main() 
+{ 
+  sbrk(256);
+
+
+  return 0; 
+}

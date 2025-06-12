@@ -1,0 +1,15 @@
+#define _GNU_SOURCE
+#include <stdint.h>
+#include <unistd.h>
+#include <stddef.h>
+
+struct header {
+  uint64_t size;
+  struct header *next;
+};
+
+int main() {
+  sbrk(256);
+
+  return 0;
+}
